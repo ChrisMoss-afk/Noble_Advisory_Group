@@ -1,0 +1,295 @@
+/*COMMENT: §§§ SECTION 1: WHERE TO BEGIN FRAME §§§*/
+/*COMMENT: [PAIR CONTEXT WITH A CLEAR ORIENTATION CHOICE BEFORE ASKING THE OWNER TO GO DEEPER]*/
+.conversation-choice-page {
+    background: var(--color-warm-bone);
+    color: var(--color-near-black);
+}
+
+.site-header--conversation-choice {
+    border-bottom: 0;
+}
+
+.conversation-choice-main {
+    overflow: hidden;
+}
+
+.conversation-choice {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    padding: clamp(1.8rem, 4vw, 3.7rem) var(--page-gutter) clamp(3rem, 5.1vw, 4.7rem);
+}
+
+.conversation-choice__intro {
+    display: grid;
+    gap: clamp(1rem, 2vw, 1.65rem);
+    padding-bottom: clamp(1.8rem, 3.5vw, 3.2rem);
+    border-bottom: 1px solid rgba(31, 28, 31, 0.14);
+}
+
+.conversation-choice__intro-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(18rem, 0.7fr);
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: start;
+}
+
+.conversation-choice__intro h1 {
+    max-width: 19ch;
+    font-size: var(--type-display-compact);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+}
+
+.conversation-choice__intro-copy {
+    display: grid;
+    gap: 1.15rem;
+    padding-top: 0.25rem;
+}
+
+.conversation-choice__intro-copy h2 {
+    max-width: 27ch;
+    font-size: var(--type-card);
+    line-height: var(--leading-card);
+    letter-spacing: var(--tracking-card);
+}
+
+.conversation-choice__intro-copy p {
+    max-width: 47ch;
+    font-size: var(--type-lead);
+    line-height: var(--leading-lead);
+    color: rgba(31, 28, 31, 0.76);
+}
+
+.conversation-choice__principle {
+    padding-top: 1.15rem;
+    border-top: 1px solid rgba(31, 28, 31, 0.13);
+    color: var(--color-near-black) !important;
+}
+
+.conversation-choice__orientation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(1.6rem, 2.8vw, 2.4rem) 0 clamp(1.25rem, 2vw, 1.7rem);
+    text-align: center;
+}
+
+.conversation-choice__orientation h2 {
+    max-width: 28ch;
+    font-size: var(--type-section);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-section);
+    letter-spacing: var(--tracking-section);
+}
+
+/*COMMENT: §§§ SECTION 2: ORIENTATION PATHS §§§*/
+/*COMMENT: [MAKE THREE GENUINE NEXT STEPS AVAILABLE WITHOUT FORCING FOUR QUESTIONS ON EVERY OWNER]*/
+.conversation-choice__paths {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid rgba(31, 28, 31, 0.13);
+    border-bottom: 1px solid rgba(31, 28, 31, 0.13);
+}
+
+.conversation-choice__path {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    align-content: start;
+    gap: 1rem;
+    min-height: 20rem;
+    padding: clamp(1.2rem, 2.05vw, 2rem);
+    color: var(--color-near-black);
+    transition: background var(--transition-medium), color var(--transition-medium);
+}
+
+.conversation-choice__path + .conversation-choice__path {
+    border-left: 1px solid rgba(31, 28, 31, 0.13);
+}
+
+.conversation-choice__path.is-attended,
+.conversation-choice__path:focus-visible {
+    background: var(--color-smoky-aubergine);
+    color: var(--color-warm-bone);
+}
+
+.conversation-choice__path:active {
+    background: var(--color-ink-plum);
+    color: var(--color-warm-bone);
+}
+
+
+.conversation-choice__title {
+    max-width: 16ch;
+    font-size: var(--type-heading);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-heading);
+}
+
+.conversation-choice__body {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    align-content: stretch;
+    gap: 0.9rem;
+}
+
+.conversation-choice__description {
+    max-width: 40ch;
+    font-size: var(--type-supporting);
+    line-height: var(--leading-supporting);
+    color: rgba(31, 28, 31, 0.70);
+    transition: color var(--transition-medium);
+}
+
+.conversation-choice__prompt {
+    min-height: 5.7rem;
+    max-width: 38ch;
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(31, 28, 31, 0.13);
+    font-size: var(--type-supporting);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-supporting);
+    color: var(--color-near-black);
+    transition: color var(--transition-medium), border-color var(--transition-medium);
+}
+
+.conversation-choice__action {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--weight-semibold);
+    font-size: var(--type-small);
+    line-height: var(--leading-small);
+}
+
+.conversation-choice__action-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.28rem;
+    padding-bottom: 0.18rem;
+    border-bottom: 1px solid currentColor;
+    transition: border-color var(--transition-medium);
+}
+
+.conversation-choice__action-arrow {
+    display: inline-block;
+    transition: color var(--transition-medium), transform var(--transition-medium);
+}
+
+.conversation-choice__path.is-attended .conversation-choice__action-label,
+.conversation-choice__path:focus-visible .conversation-choice__action-label {
+    border-bottom-color: var(--color-patinated-teal);
+}
+
+.conversation-choice__path.is-attended .conversation-choice__action-arrow,
+.conversation-choice__path:focus-visible .conversation-choice__action-arrow {
+    color: var(--color-patinated-teal);
+    transform: translateX(0.12rem);
+}
+
+.conversation-choice__path.is-attended .conversation-choice__description,
+.conversation-choice__path:focus-visible .conversation-choice__description,
+.conversation-choice__path.is-attended .conversation-choice__prompt,
+.conversation-choice__path:focus-visible .conversation-choice__prompt {
+    color: inherit;
+}
+
+.conversation-choice__path.is-attended .conversation-choice__prompt,
+.conversation-choice__path:focus-visible .conversation-choice__prompt {
+    border-top-color: rgba(244, 239, 232, 0.26);
+}
+
+/*COMMENT: §§§ SECTION 3: RESPONSIVE WHERE TO BEGIN §§§*/
+/*COMMENT: [PRESERVE CONTEXT AND REAL CHOICE AS THE LAYOUT RECOMPOSES]*/
+@media (max-width: 980px) {
+    .conversation-choice__intro-grid {
+        grid-template-columns: minmax(0, 1.15fr) minmax(17rem, 0.85fr);
+        gap: var(--space-4);
+    }
+
+    .conversation-choice__paths {
+        grid-template-columns: 1fr;
+    }
+
+    .conversation-choice__path {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        align-items: start;
+        justify-items: stretch;
+        gap: 0.45rem;
+        padding: clamp(1.15rem, 3vw, 1.65rem) 0.25rem;
+    }
+
+    .conversation-choice__path + .conversation-choice__path {
+        border-left: 0;
+        border-top: 1px solid rgba(31, 28, 31, 0.13);
+    }
+
+
+    .conversation-choice__title {
+        grid-column: 1;
+        grid-row: 1;
+        max-width: 24ch;
+    }
+
+    .conversation-choice__body {
+        grid-column: 1;
+        grid-row: 2;
+        grid-template-rows: auto;
+        max-width: 54ch;
+    }
+
+    .conversation-choice__prompt {
+        min-height: 0;
+    }
+
+    .conversation-choice__action {
+        grid-column: 1;
+        grid-row: 3;
+        margin-top: 0.2rem;
+    }
+}
+
+@media (max-width: 760px) {
+    .conversation-choice__intro-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .conversation-choice__intro-copy {
+        padding-top: 0;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .conversation-choice {
+        padding-top: var(--space-3);
+        padding-bottom: var(--space-4);
+    }
+
+    .conversation-choice__intro {
+        padding-bottom: var(--space-3);
+    }
+
+    .conversation-choice__orientation {
+        padding-top: var(--space-3);
+    }
+
+    .conversation-choice__path {
+        padding: 1.2rem 0;
+    }
+
+    .conversation-choice__body {
+        max-width: 42ch;
+    }
+}
+
+@media (hover: none) {
+    .conversation-choice__path:active,
+    .conversation-choice__path:focus-visible {
+        background: var(--color-smoky-aubergine);
+        color: var(--color-warm-bone);
+    }
+}

@@ -1,0 +1,228 @@
+/*COMMENT: §§§ SECTION 1: COMPACT FIRM FOOTER §§§*/
+/*COMMENT: [DEFINE COMPACT FIRM FOOTER STYLES]*/
+.firm-footer {
+    flex: 0 0 auto;
+    background: var(--color-paper);
+    color: var(--color-ink-plum);
+    border-top: 1px solid rgba(40,34,50,0.16);
+}
+
+.firm-footer__inner {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    padding: clamp(1rem, 1.8vh, 1.4rem) var(--page-gutter) clamp(0.5rem, 0.8vh, 0.72rem);
+    display: grid;
+    grid-template-columns: minmax(11.5rem, 0.9fr) minmax(1.8rem, 0.18fr) minmax(8.5rem, 0.62fr) minmax(11rem, 0.84fr) minmax(9rem, 0.68fr);
+    column-gap: clamp(1rem, 1.8vw, 1.7rem);
+    row-gap: clamp(0.85rem, 1.4vh, 1.1rem);
+}
+
+.firm-footer__identity {
+    grid-column: 1;
+    display: grid;
+    align-content: start;
+    justify-items: center;
+    gap: 0.3rem;
+    text-align: center;
+}
+
+.firm-footer__mark {
+    justify-self: center;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 0.35rem;
+}
+
+.firm-footer__mark img {
+    width: auto;
+    height: clamp(2.7rem, 3vw, 3.15rem);
+    transition: opacity var(--transition-medium);
+}
+
+.firm-footer__mark:hover img,
+.firm-footer__mark:focus-visible img {
+    opacity: 0.68;
+}
+
+.firm-footer__mark:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: 4px;
+}
+
+.firm-footer__identity p {
+    max-width: 25ch;
+    font-size: var(--type-supporting);
+    line-height: var(--leading-supporting);
+}
+
+.firm-footer__identity span,
+.firm-footer__group span {
+    font-size: var(--type-small);
+    color: rgba(40,34,50,0.7);
+    line-height: var(--leading-small);
+}
+
+.firm-footer__identity span {
+    font-style: italic;
+}
+
+.firm-footer__group {
+    display: grid;
+    align-content: start;
+    gap: 0.32rem;
+    min-width: 0;
+    font-size: var(--type-small);
+    line-height: var(--leading-small);
+}
+
+.firm-footer__group--navigate {
+    grid-column: 3;
+}
+
+.firm-footer__group--contact {
+    grid-column: 4;
+}
+
+.firm-footer__group--connect {
+    grid-column: 5;
+}
+
+.firm-footer__group h2 {
+    margin-bottom: 0.3rem;
+    font-size: var(--type-micro);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    line-height: var(--leading-micro);
+}
+
+.firm-footer__group a,
+.firm-footer__legal a {
+    transition: color var(--transition-fast);
+}
+
+.firm-footer__group a:hover,
+.firm-footer__group a:focus-visible,
+.firm-footer__legal a:hover,
+.firm-footer__legal a:focus-visible {
+    color: var(--color-patinated-teal);
+}
+
+.firm-footer__group a:active,
+.firm-footer__legal a:active {
+    color: var(--color-smoky-aubergine);
+}
+
+.firm-footer__legal {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.48rem;
+    border-top: 1px solid rgba(40,34,50,0.1);
+    font-size: var(--type-micro);
+    color: rgba(40,34,50,0.7);
+    line-height: var(--leading-micro);
+}
+
+.firm-footer__legal div {
+    display: flex;
+    gap: 1.2rem;
+}
+
+/*COMMENT: §§§ SECTION 2: RESPONSIVE FOOTER COMPOSITION §§§*/
+/*COMMENT: [PRESERVE FOOTER HIERARCHY WHILE ADAPTING THE GRID TO AVAILABLE WIDTH]*/
+@media (max-width: 900px) {
+    .firm-footer__inner {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+            "identity navigate"
+            "contact connect"
+            "legal legal";
+        column-gap: clamp(1.5rem, 5vw, 3rem);
+        row-gap: var(--space-3);
+    }
+
+    .firm-footer__identity {
+        grid-column: auto;
+        grid-area: identity;
+        justify-items: start;
+        text-align: left;
+    }
+
+    .firm-footer__mark {
+        justify-self: start;
+    }
+
+    .firm-footer__group--navigate {
+        grid-column: auto;
+        grid-area: navigate;
+    }
+
+    .firm-footer__group--contact {
+        grid-column: auto;
+        grid-area: contact;
+    }
+
+    .firm-footer__group--connect {
+        grid-column: auto;
+        grid-area: connect;
+    }
+
+    .firm-footer__legal {
+        grid-area: legal;
+    }
+}
+
+@media (max-width: 620px) {
+    .firm-footer__inner {
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+        grid-template-areas:
+            "identity identity"
+            "navigate contact"
+            "connect contact"
+            "legal legal";
+        column-gap: clamp(1.25rem, 6vw, 2.25rem);
+        row-gap: 1.05rem;
+        padding-top: 1rem;
+        padding-bottom: 0.72rem;
+    }
+
+    .firm-footer__identity {
+        gap: 0.22rem;
+    }
+
+    .firm-footer__mark {
+        margin-bottom: 0.15rem;
+    }
+
+    .firm-footer__mark img {
+        height: 2.4rem;
+    }
+
+    .firm-footer__identity p {
+        max-width: 29ch;
+    }
+
+    .firm-footer__group {
+        gap: 0.38rem;
+    }
+
+    .firm-footer__group h2 {
+        margin-bottom: 0.14rem;
+    }
+
+    .firm-footer__legal {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        row-gap: 0.5rem;
+        padding-top: 0.56rem;
+    }
+}
+
+/*COMMENT: §§§ SECTION 3: FOOTER CONTENT RESILIENCE §§§*/
+/*COMMENT: [ALLOW LONG CONTACT VALUES TO WRAP WITHOUT BREAKING FOOTER COLUMNS]*/
+.firm-footer__group a {
+    overflow-wrap: anywhere;
+    word-break: normal;
+}

@@ -1,0 +1,463 @@
+/*COMMENT: §§§ SECTION 1: FOUR QUESTIONS FRAME §§§*/
+/*COMMENT: [DEFINE FOUR QUESTIONS AS A COMPACT OWNER-REFLECTION EXPERIENCE]*/
+.front-door-page {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-warm-bone);
+    color: var(--color-near-black);
+}
+
+.site-header--front-door {
+    border-bottom: 0;
+}
+
+.front-door-main {
+    flex: 1 0 auto;
+    display: grid;
+    overflow: hidden;
+}
+
+.front-door-questions {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    padding: clamp(1.15rem, 2.35vh, 2rem) var(--page-gutter) clamp(1.2rem, 2.3vh, 2rem);
+}
+
+.front-door-questions__header {
+    width: min(100%, 82rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1.22fr) minmax(19rem, 0.78fr);
+    gap: clamp(2.5rem, 5vw, 5.5rem);
+    align-items: end;
+    margin-bottom: clamp(1.55rem, 3vw, 2.7rem);
+}
+
+.front-door-questions__header h1 {
+    max-width: none;
+    font-size: var(--type-section);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-section);
+    line-height: var(--leading-section);
+}
+
+.front-door-questions__title-line {
+    display: block;
+}
+
+@media (min-width: 1100px) {
+    .front-door-questions__title-line {
+        white-space: nowrap;
+    }
+}
+
+.front-door-questions__header p {
+    max-width: 60ch;
+    color: rgba(31, 28, 31, 0.72);
+    font-size: var(--type-body);
+    line-height: var(--leading-body);
+}
+
+/*COMMENT: §§§ SECTION 2: INTERACTIVE QUESTION FIELD §§§*/
+/*COMMENT: [KEEP ALL FOUR QUESTIONS EQUAL UNTIL THE OWNER CHOOSES ONE]*/
+.front-door-questions__field {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid rgba(31, 28, 31, 0.16);
+}
+
+.front-door-question {
+    position: relative;
+    min-height: clamp(7rem, 9vw, 8.5rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: 1fr;
+    align-items: center;
+    gap: 0.9rem 1.45rem;
+    padding: clamp(1.05rem, 1.55vw, 1.45rem) clamp(1.25rem, 2vw, 1.8rem);
+    border: 0;
+    border-bottom: 1px solid rgba(31, 28, 31, 0.16);
+    background: transparent;
+    color: var(--color-near-black);
+    text-align: left;
+    cursor: pointer;
+    transition: background var(--transition-medium), color var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.front-door-question:nth-child(odd) {
+    border-right: 1px solid rgba(31, 28, 31, 0.16);
+}
+
+.front-door-question__prompt {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    max-width: 28ch;
+    font-size: var(--type-heading);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-heading);
+}
+
+.front-door-question__cue {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    position: relative;
+    width: 2.05rem;
+    height: 2.05rem;
+    border: 2px solid var(--color-patinated-teal);
+    border-radius: 50%;
+    transition: border-color var(--transition-medium), transform var(--transition-medium);
+}
+
+.front-door-question__cue::before,
+.front-door-question__cue::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0.78rem;
+    height: 3px;
+    background: var(--color-patinated-teal);
+    transform: translate(-50%, -50%);
+    transition: background var(--transition-medium), transform var(--transition-medium), opacity var(--transition-medium);
+}
+
+.front-door-question__cue::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.front-door-question.is-active {
+    box-shadow: inset 0 -3px 0 var(--color-patinated-teal);
+}
+
+.front-door-question.is-active .front-door-question__cue::after {
+    opacity: 0;
+}
+
+.front-door-question:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: -2px;
+}
+
+.front-door-question:active {
+    background: var(--color-near-black);
+    color: var(--color-warm-bone);
+}
+
+.front-door-question:active .front-door-question__cue {
+    border-color: var(--color-warm-bone);
+}
+
+.front-door-question:active .front-door-question__cue::before,
+.front-door-question:active .front-door-question__cue::after {
+    background: var(--color-warm-bone);
+}
+
+@media (hover: hover) {
+    .front-door-question:hover {
+        background: var(--color-smoky-aubergine);
+        color: var(--color-warm-bone);
+    }
+
+    .front-door-question:hover .front-door-question__cue {
+        border-color: var(--color-warm-bone);
+    }
+
+    .front-door-question:hover .front-door-question__cue::before,
+    .front-door-question:hover .front-door-question__cue::after {
+        background: var(--color-warm-bone);
+    }
+}
+
+/*COMMENT: §§§ SECTION 3: QUESTION RELEVANCE AND CONCLUSION §§§*/
+/*COMMENT: [KEEP SELECTED RELEVANCE VISUALLY CONNECTED TO THE ACTIVE QUESTION ACROSS LAYOUTS]*/
+.front-door-question-detail {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-3);
+    align-items: center;
+    padding: clamp(1.25rem, 2.2vw, 2rem) 0;
+    border-bottom: 1px solid rgba(31, 28, 31, 0.16);
+}
+
+.front-door-question-detail[hidden] {
+    display: none;
+}
+
+.front-door-question-detail p {
+    max-width: 72ch;
+    font-size: var(--type-lead);
+    line-height: var(--leading-lead);
+}
+
+.front-door-question-detail__action {
+    justify-self: end;
+}
+
+.front-door-question-detail__action[hidden] {
+    display: none;
+}
+
+.front-door-questions__conclusion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(1.2rem, 2.2vh, 1.6rem) 0;
+    border-bottom: 1px solid rgba(31, 28, 31, 0.16);
+}
+
+
+/*COMMENT: §§§ SECTION 4: RESPONSIVE FOUR QUESTIONS §§§*/
+/*COMMENT: [RECOMPOSE THE QUESTION FIELD WITHOUT LOSING EQUAL STATUS OR TAP CLARITY]*/
+@media (max-width: 720px) {
+    .front-door-questions {
+        padding-top: var(--space-3);
+        padding-bottom: var(--space-4);
+    }
+
+    .front-door-questions__header {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+        margin-bottom: var(--space-3);
+    }
+
+    .front-door-questions__header h1 {
+        max-width: 22ch;
+    }
+
+    .front-door-questions__field {
+        grid-template-columns: 1fr;
+    }
+
+    .front-door-question,
+    .front-door-question:nth-child(odd) {
+        min-height: 7.6rem;
+        padding: 1.2rem 0.75rem;
+        border-right: 0;
+    }
+
+    .front-door-question__prompt {
+        max-width: 23ch;
+    }
+
+    .front-door-question-detail {
+        grid-column: 1 / -1;
+        grid-template-columns: 1fr;
+        padding: 1.15rem 0.75rem 1.35rem;
+    }
+
+    .front-door-question-detail__action {
+        justify-self: start;
+    }
+}
+
+/*COMMENT: §§§ SECTION 5: FOUR QUESTIONS FOCUS MODE §§§*/
+/*COMMENT: [MAKE DEEPER QUESTION CONTENT FEEL LIKE A STATE OF FOUR QUESTIONS, NOT A SEPARATE PAGE]*/
+.front-door-questions,
+.four-questions-focus {
+    view-transition-name: four-questions-content;
+}
+
+
+.four-questions-focus {
+    width: min(100%, var(--max-content));
+    margin: 0 auto;
+    padding: clamp(1.15rem, 2.35vh, 2rem) var(--page-gutter) clamp(1.6rem, 3.4vw, 3rem);
+}
+
+.four-questions-focus[hidden] {
+    display: none;
+}
+
+/*COMMENT: [KEEP THE OWNER QUESTION AND ITS CONTEXT AS ONE EDITORIAL THOUGHT]*/
+.four-questions-focus__opening {
+    width: min(100%, 76rem);
+    display: grid;
+    gap: clamp(1rem, 1.6vw, 1.4rem);
+    padding: clamp(0.5rem, 1.2vw, 1rem) 0 clamp(2.4rem, 4.2vw, 3.8rem);
+}
+
+.four-questions-focus__opening h1 {
+    max-width: 24ch;
+    font-size: var(--type-display-compact);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+}
+
+.four-questions-focus__opening p {
+    max-width: 66ch;
+    color: rgba(40,34,50,0.84);
+    font-size: var(--type-lead);
+    line-height: var(--leading-lead);
+    text-wrap: pretty;
+}
+
+/*COMMENT: [MAKE THE NOBLE EXAMINATION THE PURPOSEFUL DEEPER LAYER OF THE EXPERIENCE]*/
+.four-questions-focus__examination {
+    border-top: 1px solid rgba(40,34,50,0.2);
+    border-bottom: 1px solid rgba(40,34,50,0.2);
+}
+
+.four-questions-focus__examination-heading {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: clamp(1.9rem, 3.1vw, 2.7rem) 0 clamp(1.55rem, 2.5vw, 2rem);
+}
+
+.four-questions-focus__examination-heading h2 {
+    max-width: 28ch;
+    font-size: var(--type-heading);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-heading);
+}
+
+.four-questions-focus__examination-body {
+    display: grid;
+    grid-template-columns: minmax(16rem, 0.92fr) minmax(0, 1.08fr);
+    padding-bottom: clamp(2.1rem, 3.5vw, 3rem);
+}
+
+.four-questions-focus__examination-item {
+    display: grid;
+    align-content: start;
+    gap: 0.9rem;
+    min-width: 0;
+}
+
+.four-questions-focus__examination-item--inputs {
+    padding-right: clamp(2rem, 4vw, 4rem);
+}
+
+.four-questions-focus__examination-item--outcome {
+    padding-left: clamp(2.4rem, 4.6vw, 4.6rem);
+    border-left: 1px solid rgba(40,34,50,0.14);
+}
+
+.four-questions-focus__examination-item h3 {
+    color: var(--color-patinated-teal);
+    font-size: var(--type-micro);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-eyebrow);
+    line-height: var(--leading-micro);
+    text-transform: uppercase;
+}
+
+.four-questions-focus__examination-item p {
+    color: var(--color-ink-plum);
+    text-wrap: pretty;
+}
+
+.four-questions-focus__examination-item--inputs p,
+.four-questions-focus__examination-item--outcome p {
+    font-size: var(--type-body);
+    line-height: var(--leading-body);
+}
+
+.four-questions-focus__examination-item--inputs p {
+    max-width: 48ch;
+}
+
+.four-questions-focus__examination-item--outcome p {
+    max-width: 52ch;
+}
+
+/*COMMENT: [END WITH A CLEAR RETURN PATH AND ONE FORWARD CHOICE]*/
+.four-questions-focus__navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    padding-top: clamp(1.35rem, 2.4vw, 2rem);
+}
+
+.four-questions-focus__back {
+    flex: 0 0 auto;
+}
+
+/*COMMENT: §§§ SECTION 6: FOCUS MODE TRANSITION AND RESPONSIVE COMPOSITION §§§*/
+/*COMMENT: [USE MOTION ONLY TO COMMUNICATE THAT THE OWNER HAS GONE DEEPER IN THE SAME EXPERIENCE]*/
+@media (prefers-reduced-motion: no-preference) {
+    ::view-transition-old(four-questions-content),
+    ::view-transition-new(four-questions-content) {
+        animation-duration: 180ms;
+        animation-timing-function: ease-out;
+    }
+}
+
+/*COMMENT: [PRESERVE THE ASYMMETRY UNTIL THE CONTENT NEEDS TO BECOME A SINGLE READING COLUMN]*/
+@media (max-width: 900px) {
+    .four-questions-focus__opening {
+        width: min(100%, 64rem);
+    }
+
+    .four-questions-focus__examination-body {
+        grid-template-columns: minmax(14rem, 0.9fr) minmax(0, 1.1fr);
+    }
+}
+
+@media (max-width: 720px) {
+    .four-questions-focus {
+        padding-top: var(--space-3);
+        padding-bottom: var(--space-4);
+    }
+
+    .four-questions-focus__opening {
+        width: 100%;
+        gap: 0.85rem;
+        padding-top: 0;
+        padding-bottom: var(--space-5);
+    }
+
+    .four-questions-focus__opening h1 {
+        max-width: 18ch;
+        font-size: var(--type-section);
+        line-height: var(--leading-section);
+        letter-spacing: var(--tracking-section);
+    }
+
+    .four-questions-focus__opening p {
+        max-width: 100%;
+        font-size: var(--type-body);
+        line-height: var(--leading-body);
+    }
+
+    .four-questions-focus__examination-heading,
+    .four-questions-focus__examination-body {
+        grid-template-columns: 1fr;
+    }
+
+    .four-questions-focus__examination-heading {
+        gap: 0.8rem;
+        padding: var(--space-4) 0 var(--space-3);
+    }
+
+    .four-questions-focus__examination-body {
+        padding-bottom: var(--space-4);
+    }
+
+    .four-questions-focus__examination-item--inputs,
+    .four-questions-focus__examination-item--outcome {
+        padding-left: 0;
+        padding-right: 0;
+        border-left: 0;
+    }
+
+    .four-questions-focus__examination-item--outcome {
+        margin-top: var(--space-4);
+        padding-top: var(--space-4);
+        border-top: 1px solid rgba(40,34,50,0.14);
+    }
+
+
+    .four-questions-focus__navigation {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+}
+

@@ -1,0 +1,347 @@
+/*COMMENT: §§§ SECTION 1: DRAWER MENU §§§*/
+/*COMMENT: [DEFINE DRAWER MENU STYLES]*/
+.menu-drawer {
+    position: fixed;
+    z-index: 160;
+    inset: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.menu-drawer[aria-hidden="false"] {
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.menu-drawer__scrim {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgba(31,28,31,0.42);
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+}
+
+.menu-drawer[aria-hidden="false"] .menu-drawer__scrim {
+    opacity: 1;
+}
+
+.menu-drawer__panel {
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: min(34rem, 92vw);
+    background: var(--color-ink-plum);
+    color: var(--color-warm-bone);
+    padding: var(--space-3) var(--space-4);
+    transform: translateX(100%);
+    transition: transform var(--transition-medium);
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-drawer[aria-hidden="false"] .menu-drawer__panel {
+    transform: translateX(0);
+}
+
+.menu-drawer__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--space-4);
+    font-size: var(--type-micro);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    line-height: var(--leading-micro);
+}
+
+.menu-drawer__header button {
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.menu-drawer__close {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.45rem 0;
+    font-size: var(--type-small);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.01em;
+    text-transform: none;
+}
+
+.menu-drawer__close-icon {
+    font-size: 1.45rem;
+    font-weight: 300;
+    line-height: 0.8;
+}
+
+.menu-drawer__header button:hover,
+.menu-drawer__header button:focus-visible {
+    color: var(--color-patinated-teal);
+}
+
+.menu-drawer__links {
+    display: grid;
+    gap: 0;
+}
+
+.menu-drawer__links a {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 1rem 0.7rem;
+    border-top: 1px solid rgba(244,239,232,0.18);
+    font-size: var(--type-heading);
+    line-height: var(--leading-heading);
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+    letter-spacing: var(--tracking-heading);
+}
+
+.menu-drawer__links a > span:last-child {
+    transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.menu-drawer__links a:hover,
+.menu-drawer__links a:focus-visible {
+    background: var(--color-smoky-aubergine);
+}
+
+.menu-drawer__links a:hover > span:last-child,
+.menu-drawer__links a:focus-visible > span:last-child {
+    color: var(--color-patinated-teal);
+    transform: translateX(0.18rem);
+}
+
+.menu-drawer__links a:last-child {
+    border-bottom: 1px solid rgba(244,239,232,0.18);
+}
+
+.menu-drawer__links .menu-drawer__action {
+    margin-top: var(--space-2);
+    border-top-color: rgba(78,122,118,0.62);
+}
+
+
+.menu-drawer__utility {
+    margin-top: auto;
+    display: grid;
+    gap: 0.7rem;
+    padding-top: var(--space-3);
+    border-top: 1px solid rgba(244, 239, 232, 0.18);
+    font-size: var(--type-small);
+    color: rgba(244, 239, 232, 0.76);
+    line-height: var(--leading-small);
+}
+
+.menu-drawer__utility-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1.4rem;
+}
+
+.menu-drawer__utility a:hover,
+.menu-drawer__utility a:focus-visible {
+    color: var(--color-patinated-teal);
+}
+
+body.has-open-menu {
+    overflow: hidden;
+}
+
+
+/*COMMENT: [SURFACE ACTIVE CHAPTER STATE INSIDE THE DRAWER]*/
+.menu-drawer__links a[aria-current="step"],
+.menu-drawer__links a[aria-current="page"] {
+    color: var(--color-white-soft);
+}
+
+.menu-drawer__links a[aria-current="step"] > span:last-child,
+.menu-drawer__links a[aria-current="page"] > span:last-child {
+    color: var(--color-patinated-teal);
+}
+
+@media (max-width: 720px) {
+    .menu-drawer__header button {
+        min-height: 3rem;
+        min-width: 3rem;
+    }
+
+    .menu-drawer__links a {
+        min-height: 3.25rem;
+        align-items: center;
+    }
+}
+
+/*COMMENT: §§§ SECTION 2: DIRECTIONAL ACTION SYSTEM §§§*/
+/*COMMENT: [USE ONE SQUIRCLE INTERACTION LANGUAGE FOR PRIMARY, SECONDARY, FORWARD, AND RETURN MOVEMENT]*/
+.directional-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.72rem;
+    width: fit-content;
+    min-height: 3.3rem;
+    padding: 0 1.25rem;
+    border: 1px solid transparent;
+    border-radius: var(--action-corner-radius);
+    background: transparent;
+    font-size: var(--type-body);
+    font-weight: var(--weight-semibold);
+    line-height: 1;
+    text-align: center;
+    transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+@supports (corner-shape: squircle) {
+    .directional-action {
+        border-radius: var(--action-corner-radius-squircle);
+        corner-shape: squircle;
+    }
+}
+
+.directional-action__arrow {
+    flex: 0 0 auto;
+    line-height: 1;
+    transition: transform var(--transition-fast);
+}
+
+.directional-action--primary {
+    border-color: var(--color-ink-plum);
+    background: var(--color-ink-plum);
+    color: var(--color-warm-bone);
+}
+
+.directional-action--secondary {
+    min-height: 3.05rem;
+    padding-inline: 1.05rem;
+    border-color: var(--action-border-color);
+    background: transparent;
+    color: var(--color-ink-plum);
+    font-size: var(--type-small);
+}
+
+.directional-action--accent {
+    border-color: rgba(255,253,249,0.72);
+    background: var(--color-patinated-teal);
+    color: var(--color-white-soft);
+}
+
+.site-header__return {
+    justify-self: end;
+}
+
+.directional-action:hover,
+.directional-action:focus-visible {
+    transform: translateY(-0.08rem);
+}
+
+.directional-action--primary:hover,
+.directional-action--primary:focus-visible {
+    border-color: var(--color-smoky-aubergine);
+    background: var(--color-smoky-aubergine);
+}
+
+.directional-action--secondary:hover,
+.directional-action--secondary:focus-visible {
+    border-color: var(--color-ink-plum);
+    background: var(--color-ink-plum);
+    color: var(--color-warm-bone);
+}
+
+.directional-action--accent:hover,
+.directional-action--accent:focus-visible {
+    border-color: var(--color-white-soft);
+    background: var(--color-ink-plum);
+    color: var(--color-white-soft);
+}
+
+.directional-action--forward:hover .directional-action__arrow,
+.directional-action--forward:focus-visible .directional-action__arrow {
+    transform: translateX(0.18rem);
+}
+
+.directional-action--back:hover .directional-action__arrow,
+.directional-action--back:focus-visible .directional-action__arrow {
+    transform: translateX(-0.18rem);
+}
+
+.directional-action:active {
+    transform: translateY(0);
+}
+
+.directional-action--primary:active {
+    border-color: var(--color-near-black);
+    background: var(--color-near-black);
+}
+
+.directional-action--secondary:active {
+    border-color: var(--color-near-black);
+    background: var(--color-near-black);
+    color: var(--color-warm-bone);
+}
+
+.directional-action--accent:active {
+    border-color: var(--color-near-black);
+    background: var(--color-near-black);
+    color: var(--color-white-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .directional-action,
+    .directional-action__arrow {
+        transition: none;
+    }
+
+    .directional-action:hover,
+    .directional-action:focus-visible,
+    .directional-action--forward:hover .directional-action__arrow,
+    .directional-action--forward:focus-visible .directional-action__arrow,
+    .directional-action--back:hover .directional-action__arrow,
+    .directional-action--back:focus-visible .directional-action__arrow {
+        transform: none;
+    }
+}
+
+@media (max-width: 720px) {
+    .directional-action {
+        min-height: 3.2rem;
+        padding-inline: 1.1rem;
+    }
+
+    .directional-action--secondary {
+        min-height: 3rem;
+        padding-inline: 1rem;
+    }
+}
+
+/*COMMENT: §§§ SECTION 3: SHARED SOCIAL LINKS §§§*/
+/*COMMENT: [KEEP SOCIAL BRAND MARKS PLATFORM-STABLE AND SYNCHRONIZED WITH THEIR LINK STATES]*/
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: fit-content;
+    transition: color var(--transition-fast);
+}
+
+.social-link__icon {
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 1rem;
+    fill: currentColor;
+    pointer-events: none;
+}
+
+.social-link--linkedin:hover,
+.social-link--linkedin:focus-visible {
+    color: var(--color-patinated-teal);
+}
