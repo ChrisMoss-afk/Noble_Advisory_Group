@@ -1,0 +1,27 @@
+/*COMMENT: §§§ SECTION 1: SPECIALIST EXPERTISE FRAME §§§*/
+.expertise-page { min-height:100dvh; display:flex; flex-direction:column; background:var(--color-warm-bone); }
+.expertise-main { flex:1 0 auto; width:min(100%,var(--max-content)); margin:0 auto; padding:clamp(2.5rem,5vw,5rem) var(--page-gutter) clamp(4rem,7vw,7rem); }
+.expertise-intro { display:grid; gap:var(--space-4); padding-bottom:var(--space-5); }
+.expertise-intro__grid { display:grid; grid-template-columns:minmax(0,0.9fr) minmax(20rem,1.1fr); gap:clamp(2.5rem,6vw,6rem); align-items:center; }
+.expertise-intro h1 { max-width:16ch; font-size:var(--type-page-title); line-height:var(--leading-page-title); letter-spacing:var(--tracking-page-title); }
+.expertise-intro__copy { display:grid; gap:var(--space-2); max-width:62ch; }
+.expertise-system { border-top:1px solid rgba(40,34,50,0.18); border-bottom:1px solid rgba(40,34,50,0.18); }
+.expertise-item + .expertise-item { border-top:1px solid rgba(40,34,50,0.14); }
+.expertise-item__trigger { width:100%; min-height:clamp(7rem,9vw,8.5rem); display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:1rem; padding:clamp(1rem,1.6vw,1.45rem) clamp(1.25rem,2vw,1.8rem); border:0; background:transparent; color:var(--color-patinated-teal); text-align:left; cursor:pointer; transition:background var(--transition-medium),color var(--transition-medium),box-shadow var(--transition-medium); }
+.expertise-item__cue { position:relative; width:2.05rem; height:2.05rem; border:2px solid currentColor; border-radius:50%; }
+.expertise-item__cue::before,.expertise-item__cue::after { content:""; position:absolute; left:50%; top:50%; width:0.78rem; height:3px; background:currentColor; transform:translate(-50%,-50%); transition:transform var(--transition-medium),opacity var(--transition-medium); }
+.expertise-item__cue::after { transform:translate(-50%,-50%) rotate(90deg); }
+.expertise-item.is-active .expertise-item__trigger { background:var(--color-patinated-teal); color:var(--color-white-soft); box-shadow:inset 0 -3px 0 var(--color-ink-plum); }
+.expertise-item.is-active .expertise-item__cue::after { opacity:0; }
+@media (hover:hover) { .expertise-item__trigger:hover { background:var(--color-patinated-teal); color:var(--color-white-soft); } }
+.expertise-item__trigger:focus-visible { outline:var(--focus-ring); outline-offset:-2px; }
+.expertise-item__panel { display:grid; grid-template-rows:0fr; opacity:0; visibility:hidden; transition:grid-template-rows 420ms var(--ease-noble),opacity 220ms ease,visibility 0s linear 420ms; }
+.expertise-item.is-active .expertise-item__panel { grid-template-rows:1fr; opacity:1; visibility:visible; transition:grid-template-rows 420ms var(--ease-noble),opacity 260ms ease 80ms,visibility 0s; }
+.expertise-item__panel > div { min-height:0; overflow:hidden; }
+.expertise-item__panel p { width:calc(100% - 1.5rem); max-width:66ch; margin-inline:auto; padding:clamp(1.1rem,1.9vw,1.7rem) 0; color:var(--color-near-black); font-size:var(--type-body); line-height:var(--leading-body); text-align:left; text-wrap:pretty; }
+.expertise-closing { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:end; gap:var(--space-4); padding-top:var(--space-5); }
+.expertise-closing > div { display:grid; gap:var(--space-2); max-width:62ch; }
+.expertise-closing h2 { max-width:24ch; font-size:var(--type-section-title); line-height:var(--leading-section-title); letter-spacing:var(--tracking-section-title); }
+.expertise-closing .directional-action { align-self:end; }
+@media (max-width:760px) { .expertise-intro__grid,.expertise-closing { grid-template-columns:1fr; } .expertise-intro__grid { gap:var(--space-3); } .expertise-item__trigger { min-height:7rem; padding-inline:0.75rem; } .expertise-item__panel p { font-size:var(--type-body); line-height:var(--leading-body); } .expertise-closing .directional-action { justify-self:center; } }
+@media (prefers-reduced-motion:reduce) { .expertise-item__trigger,.expertise-item__panel,.expertise-item__cue::before,.expertise-item__cue::after { transition:none; } }
