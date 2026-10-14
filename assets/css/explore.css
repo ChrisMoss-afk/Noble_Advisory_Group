@@ -1,0 +1,28 @@
+/*COMMENT: §§§ SECTION 1: WORKING WITH NOBLE FRAME §§§*/
+.explore-page { background:var(--color-warm-bone); }
+.site-header--experience { border-bottom:1px solid rgba(40,34,50,0.08); }
+.explore-main { width:100%; }
+.explore-section { border-bottom:1px solid rgba(40,34,50,0.14); }
+.explore-section:last-child { border-bottom:0; }
+.explore-section__inner { width:min(100%,var(--max-content)); margin:0 auto; padding:clamp(4rem,7vw,7.25rem) var(--page-gutter); }
+.explore-section--working .explore-section__inner { padding-bottom:var(--space-5); }
+.explore-section--conversation { background:var(--color-smoky-aubergine); color:var(--color-warm-bone); }
+.explore-section__inner--conversation { padding-top:clamp(3rem,5.7vw,5.5rem); padding-bottom:clamp(3.25rem,6vw,5.75rem); }
+
+/*COMMENT: §§§ SECTION 2: RELATIONSHIP POSITIONING §§§*/
+.working { display:grid; gap:var(--space-3); }
+.working__content { display:grid; gap:clamp(2rem,4vw,3.6rem); }
+.working__lead { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(20rem,0.7fr); gap:clamp(2.5rem,6vw,6rem); align-items:center; }
+.working__lead h1 { max-width:18ch; font-size:var(--type-section-title); font-weight:var(--weight-semibold); line-height:var(--leading-section-title); letter-spacing:var(--tracking-section-title); }
+.working__lead-title-line { display:block; }
+.working__lead .intro { max-width:42ch; }
+.working__principles { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); border-top:1px solid rgba(40,34,50,0.16); }
+.working__principles > div { display:grid; align-content:start; gap:0.8rem; padding:clamp(1.65rem,2.8vw,2.4rem) clamp(1.2rem,2.3vw,2.15rem); }
+.working__principles > div + div { border-left:1px solid rgba(40,34,50,0.16); }
+.working__principles p { max-width:52ch; color:rgba(40,34,50,0.82); }
+.working__statement { display:grid; justify-items:center; gap:var(--space-3); padding:clamp(1rem,2vw,1.6rem) clamp(1.2rem,2.3vw,2.15rem) 0; text-align:center; }
+.working__statement h2 { max-width:30ch; font-size:var(--type-section-title); font-weight:var(--weight-bold); line-height:var(--leading-section-title); letter-spacing:var(--tracking-section-title); }
+.working__statement em { font-weight:inherit; }
+
+@media (max-width:900px) { .working__lead,.working__principles { grid-template-columns:1fr; } .working__principles > div + div { border-top:1px solid rgba(40,34,50,0.16); border-left:0; } }
+@media (max-width:640px) { .explore-section__inner { padding-top:var(--space-5); padding-bottom:var(--space-5); } }
